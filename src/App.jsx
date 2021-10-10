@@ -9,6 +9,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 // TO DO:
 // Implement sorting by date
+// using Date.parse() to compare and sort when rows are rendered
 // Refactor filtering
 
 // BONUS TO DO:
@@ -35,12 +36,11 @@ function App() {
 
   const filterData = (data) => {
     let filteredData = data
-
     if (!!filter){
       filteredData = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()))
     }
-
-    return filteredData
+    console.log(Date.parse(filteredData[0].registered.date))
+    return  filteredData
   }
 
   useEffect(() => {
@@ -56,6 +56,11 @@ function App() {
 
   const renderRows = () => {
     const rows = []
+    filteredData.sort((a, b) => {
+      return sortDirection === 'asc' ? 
+        Date.parse(a.registered.date) - Date.parse(b.registered.date) 
+        : Date.parse(b.registered.date) - Date.parse(a.registered.date)
+    })
     for (let i = 0; i < filteredData?.length; i++){
       rows.push(
         <tr>
