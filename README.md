@@ -15,4 +15,4 @@ We installed a couple packages to get you started, so you should run `npm i` to 
 
 ## Feedback (optional)
 
-
+Had an interruption part of the way through, so it took me a little longer than expected. Thanks!
